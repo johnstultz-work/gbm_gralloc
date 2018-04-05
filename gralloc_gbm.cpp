@@ -380,7 +380,8 @@ buffer_handle_t gralloc_gbm_bo_create(struct gbm_device *gbm,
 	gbm_bo_handle_map.emplace(handle, bo);
 
 	/* in pixels */
-	*stride = gralloc_handle_get_stride(handle, 0) / gralloc_gbm_get_bpp(format);
+	struct gralloc_handle_t *ghandle = gralloc_handle(handle);
+	*stride = ghandle->stride / gralloc_gbm_get_bpp(format);
 
 	return handle;
 }
